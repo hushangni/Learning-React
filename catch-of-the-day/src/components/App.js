@@ -10,6 +10,21 @@ class App extends React.Component {
         order: {}
     }
 
+    addFish = fish =>  {
+        // 1. take copy of existing state
+        // object spread
+        const fishes = {...this.state.fishes};
+        // 2. add our new fish to our fishes
+        fishes[`fish${Date.now()}`] = fish;
+        // 3. set new fishes object to state
+        this.setState({
+            fishes
+        })
+        // this.state.fishes.push(fish)
+        console.log("adding that fish");
+
+    }
+
     render() {
         return (
             <div className="catch-of-the-day">
@@ -17,7 +32,7 @@ class App extends React.Component {
                     <Header tagline="Shang is Cool"/>
                 </div>
                 <Order />
-                <Inventory />
+                <Inventory addFish={this.addFish} />
             </div>
         )
     }
